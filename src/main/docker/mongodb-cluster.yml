@@ -1,0 +1,16 @@
+version: '2'
+services:
+    kintro-mongodb:
+        image: mongo:4.0.2
+        ports:
+            - "27017:27017"
+        command: mongos --configdb kintro-mongodb-config
+    kintro-mongodb-node:
+        build:
+            context: .
+            dockerfile: mongodb/MongoDB.Dockerfile
+        command: mongod --replSet rs1 --noprealloc --smallfiles
+    kintro-mongodb-config:
+        image: mongo:4.0.2
+        container_name: kintro-mongodb-config
+        command: mongod --noprealloc --smallfiles --configsvr --dbpath /data/db

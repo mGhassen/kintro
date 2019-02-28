@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "gitCompany": "",
+    "baseName": "kintro",
+    "packageName": "fr.kreatik.kintro",
+    "packageFolder": "fr/kreatik/kintro",
+    "serverPort": 8080,
+    "serviceDiscoveryType": false,
+    "authenticationType": "jwt",
+    "uaaBaseName": "../uaa",
+    "cacheProvider": "no",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": false,
+    "enableSwaggerCodegen": false,
+    "messageBroker": false,
+    "buildTool": "maven",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "enableTranslation": false,
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "clientFramework": "angularX",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "5.8.2",
+    "jwtSecretKey": "NWUxZTBkZGY1OTZmMzBlZWIwMTNiMmM1NGFkZGE5ZDFlMTU3MTE4YzAyMmM4MTZiZWNkNWFhNmFjYWNjZTI4YTkxNjYyMzg0OTBkYzdhMzBmZWVkZmNlYWMzNzJjZWQwY2JjYjBkOTIxMjEwNDE0Y2NjN2Y5MTI5ZGRjNjRkMGM=",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": []
+  },
+  "git-provider": "GitHub",
+  "git-company": "mGhassen",
+  "repository-name": "kintro"
+}
