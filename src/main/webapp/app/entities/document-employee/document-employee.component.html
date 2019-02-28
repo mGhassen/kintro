@@ -1,0 +1,70 @@
+<div>
+    <h2 id="page-heading">
+        <span>Document Employees</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-document-employee" [routerLink]="['/document-employee/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Document Employee
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="documentEmployees">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="docName"><span>Doc Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="description"><span>Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="docpath"><span>Docpath</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="employee.id"><span>Employee</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="job.id"><span>Job</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let documentEmployee of documentEmployees ;trackBy: trackId">
+                <td><a [routerLink]="['/document-employee', documentEmployee.id, 'view' ]">{{documentEmployee.id}}</a></td>
+                <td>{{documentEmployee.docName}}</td>
+                <td>{{documentEmployee.description}}</td>
+                <td>{{documentEmployee.docpath}}</td>
+                <td>
+                    <div *ngIf="documentEmployee.employee">
+                        <a [routerLink]="['../employee', documentEmployee.employee?.id, 'view' ]" >{{documentEmployee.employee?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="documentEmployee.job">
+                        <a [routerLink]="['../job', documentEmployee.job?.id, 'view' ]" >{{documentEmployee.job?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/document-employee', documentEmployee.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/document-employee', documentEmployee.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'document-employee', { outlets: { popup: documentEmployee.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
